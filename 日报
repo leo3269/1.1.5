@@ -1,0 +1,29 @@
+Page({
+  data: {
+    inputText: "",
+    reports: []
+  },
+
+  onInput: function(event) {
+    this.setData({
+      inputText: event.detail.value
+    });
+  },
+
+  submitReport: function() {
+    if (this.data.inputText.trim() === "") {
+      wx.showToast({
+        title: '内容不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+
+    this.setData({
+      reports: [...this.data.reports, this.data.inputText],
+      inputText: ""
+    });
+
+    wx.showToast({
+      title: '日报提交成功',
+      icon: 'success'
